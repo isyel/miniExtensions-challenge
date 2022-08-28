@@ -1,7 +1,13 @@
 import * as types from "../actions/action.types";
 import initialState from "./initialState";
 
-function loadingReducer(state = initialState.loading, action) {
+type actionT = {
+  type: string;
+  isLoading: boolean;
+  loadingError: boolean;
+};
+
+function loadingReducer(state = initialState.loading, action: actionT) {
   switch (action.type) {
     case types.BEGIN_API_CALL:
       return { ...state, isLoading: true };

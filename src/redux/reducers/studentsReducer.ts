@@ -1,10 +1,11 @@
 import * as types from "../actions/action.types";
 import initialState from "./initialState";
+import { studentT } from "./initialState.types";
 
 type actionT = {
   type: string;
-  students?: any;
-  student?: any;
+  students: Array<studentT>;
+  student: studentT;
 };
 
 function studentReducer(state = initialState.students, action: actionT) {
