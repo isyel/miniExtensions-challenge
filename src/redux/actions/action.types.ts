@@ -1,0 +1,7 @@
+export const GET_CLASSES = "GET_CLASSES";
+export const GET_SINGLE_CLASS = "GET_SINGLE_CLASS";
+export const BEGIN_API_CALL = "BEGIN_API_CALL";
+export const END_API_CALL = "END_API_CALL";
+export const API_CALL_ERROR = "API_CALL_ERROR";
+export const GET_STUDENTS = "GET_STUDENTS";
+export const GET_SINGLE_STUDENT = "GET_SINGLE_STUDENT";
