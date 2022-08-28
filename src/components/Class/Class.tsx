@@ -2,6 +2,8 @@ import { initialStateT } from "@/redux/reducers/initialState.types";
 import React from "react";
 import { useSelector } from "react-redux";
 
+import styles from "./Class.module.css";
+
 interface IClassesListProps {
   id: string;
   name?: string;
@@ -19,12 +21,14 @@ const Class: React.FC<IClassesListProps> = ({ id, name }) => {
     .map((student) => student.name);
 
   return (
-    <div>
-      <h3>{name}</h3>
-      <div>Students</div>
-      {filteredStudents.map((student) => (
-        <div>{student}</div>
-      ))}
+    <div className={styles.Class__container}>
+      <div className={styles.Class__header}>{name}</div>
+      <div className={styles.Class__subHeader}>OTHER STUDENTS</div>
+      <div className={styles.Class__studentsList}>
+        {filteredStudents.map((student) => (
+          <div className={styles.Class__studentsTag}>{student}</div>
+        ))}
+      </div>
     </div>
   );
 };

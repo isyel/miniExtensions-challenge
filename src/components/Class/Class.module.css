@@ -1,0 +1,35 @@
+.Class__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 8px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 4px;
+}
+
+.Class__header {
+  font-weight: bold;
+  font-size: medium;
+  padding: 6px 0;
+}
+
+.Class__subHeader {
+  font-size: small;
+  color: rgba(128, 128, 128, 0.795);
+  padding: 2px 0;
+}
+
+.Class__studentsList {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Class__studentsTag {
+  padding: 2px 4px;
+  background-color: rgb(208, 230, 250);
+  font-size: smaller;
+  border-radius: 4px;
+}
