@@ -1,7 +1,7 @@
 import * as types from "./action.types";
 import { studentT } from "../reducers/initialState.types";
 
-export function getStudentDetailsSuccess(student: any) {
+export function getStudentDetailsSuccess(student: studentT) {
   return { type: types.GET_SINGLE_STUDENT, student };
 }
 
