@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/student/:id" element={<Student />} />
+          <Route path="/student/:name" element={<Student />} />
           <Route element={<PageNotFound />} />
         </Routes>
       </Router>
