@@ -1,12 +1,13 @@
 import { FieldSet, Records } from "airtable";
 import { handleError, base } from "./apiUtils";
 
-export async function getStudents(): Promise<Records<FieldSet>> {
+export async function getStudents(
+  filterFormulaString: string
+): Promise<Records<FieldSet>> {
   return base("Students")
     .select({
       view: "Grid view",
-      filterByFormula:
-        "OR(FIND('CS 101',{Classes}), FIND('CS 102',{Classes}), FIND('CS 103',{Classes}))",
+      filterByFormula: `OR(${filterFormulaString})`,
     })
     .all();
 }

@@ -1,11 +1,11 @@
 import { FieldSet, Records } from "airtable";
 import { handleError, base } from "./apiUtils";
 
-export function getClasses(): Promise<Records<FieldSet>> {
+export function getClasses(studentName: string): Promise<Records<FieldSet>> {
   return base("Classes")
     .select({
       view: "Grid view",
-      filterByFormula: "FIND('Jenny',{Students})",
+      filterByFormula: `FIND('${studentName}',{Students})`,
     })
     .all();
 }
