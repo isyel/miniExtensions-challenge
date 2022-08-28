@@ -1,6 +1,8 @@
 import { classT } from "@/redux/reducers/initialState.types";
 import React from "react";
-import Class from "../Class/Class";
+import Class from "../Class";
+
+import styles from "./ClassesList.module.css";
 
 interface IClassesListProps {
   classes: classT[];
@@ -8,7 +10,7 @@ interface IClassesListProps {
 
 const ClassesList: React.FC<IClassesListProps> = ({ classes }) => {
   return (
-    <div>
+    <div className={styles.Classes}>
       {classes.map((singleClass) => (
         <Class
           key={singleClass.id}
