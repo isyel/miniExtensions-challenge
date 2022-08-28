@@ -2,7 +2,7 @@ import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
-export default function configureStoreState(
+export default function configureStoreStateProd(
   initialState: any
 ): EnhancedStore<any> {
   return configureStore({
