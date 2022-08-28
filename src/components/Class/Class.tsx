@@ -18,15 +18,17 @@ const Class: React.FC<IClassesListProps> = ({ id, name }) => {
     .filter((student) => {
       return student.classes?.includes(id);
     })
-    .map((student) => student.name);
+    .map((student) => student);
 
   return (
     <div className={styles.Class__container}>
       <div className={styles.Class__header}>{name}</div>
-      <div className={styles.Class__subHeader}>OTHER STUDENTS</div>
+      <div className={styles.Class__subHeader}>STUDENTS</div>
       <div className={styles.Class__studentsList}>
         {filteredStudents.map((student) => (
-          <div className={styles.Class__studentsTag}>{student}</div>
+          <div key={student.id} className={styles.Class__studentsTag}>
+            {student.name}
+          </div>
         ))}
       </div>
     </div>
