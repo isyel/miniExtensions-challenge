@@ -1,4 +1,6 @@
-const initialState = {
+import { initialStateT } from "./initialState.types";
+
+const initialState: initialStateT = {
   classes: {
     classes: [],
     singleClass: null,

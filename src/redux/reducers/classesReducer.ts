@@ -1,11 +1,11 @@
-import { FieldSet } from "airtable";
 import * as types from "../actions/action.types";
 import initialState from "./initialState";
+import { classT } from "./initialState.types";
 
 type actionT = {
   type: string;
-  classes: Array<FieldSet>;
-  class: FieldSet;
+  classes: Array<classT>;
+  class: classT;
 };
 
 function classesReducer(state = initialState.classes, action: actionT) {

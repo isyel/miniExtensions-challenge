@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import characters from "./classesReducer";
+import classes from "./classesReducer";
 import loading from "./loadingReducer";
-import episode from "./studentsReducer";
+import students from "./studentsReducer";
 
 const rootReducer = combineReducers({
-  characters,
+  classes,
   loading,
-  episode,
+  students,
 });
 
 export default rootReducer;
