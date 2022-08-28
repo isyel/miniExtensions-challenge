@@ -11,7 +11,7 @@ type actionT = {
 function studentReducer(state = initialState.students, action: actionT) {
   switch (action.type) {
     case types.GET_STUDENTS:
-      return { ...state, classes: action.students };
+      return { ...state, students: action.students };
     case types.GET_SINGLE_CLASS:
       return {
         ...state,

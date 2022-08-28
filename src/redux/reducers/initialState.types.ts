@@ -1,3 +1,5 @@
+import { FieldSet } from "airtable";
+
 export type initialStateT = {
   classes: classesT;
   students: studentsT;
@@ -18,13 +20,12 @@ export type studentsT = {
 };
 
 export type classT = {
-  students: Array<string>;
-  name: string;
+  fields?: FieldSet;
   id: string;
 };
 
 export type studentT = {
-  classes: Array<string>;
+  classes?: Array<string>;
   name: string;
   id: string;
 };

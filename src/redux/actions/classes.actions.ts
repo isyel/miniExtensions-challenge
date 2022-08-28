@@ -1,7 +1,7 @@
 import * as types from "./action.types";
-import { FieldSet } from "airtable";
+import { classT } from "../reducers/initialState.types";
 
-export function getAllClassesSuccess(classes: Array<FieldSet>) {
+export function getAllClassesSuccess(classes: Array<classT>) {
   return { type: types.GET_CLASSES, classes };
 }
 
