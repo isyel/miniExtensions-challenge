@@ -10,6 +10,17 @@ export function getClasses(studentName: string): Promise<Records<FieldSet>> {
     .all();
 }
 
+export function getClassesByIds(
+  filterFormulaString: string
+): Promise<Records<FieldSet>> {
+  return base("Classes")
+    .select({
+      view: "Grid view",
+      filterByFormula: `OR(${filterFormulaString})`,
+    })
+    .all();
+}
+
 export async function getSingleClass(classId: string) {
   base("Classes").find(classId, function (err, record) {
     if (err) {
