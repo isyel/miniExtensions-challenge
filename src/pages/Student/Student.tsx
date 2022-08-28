@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { initialStateT } from "@/redux/reducers/initialState.types";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getStudents } from "./../../api/studentsApi";
 
 import styles from "./Student.module.css";
@@ -11,8 +11,12 @@ import ClassesList from "./../../components/ClassesList";
 const Student = () => {
   const params = useParams();
   const classes = useSelector((state: initialStateT) => state.classes.classes);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     // getClasses();
@@ -37,7 +41,10 @@ const Student = () => {
 
   return (
     <div className={styles.Student__container}>
-      <h2>Student: {params.name}</h2>
+      <div className={styles.Student__header}>
+        <div className={styles.Student__name}>Student: {params.name}</div>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
       <ClassesList classes={classes} />
     </div>
   );
