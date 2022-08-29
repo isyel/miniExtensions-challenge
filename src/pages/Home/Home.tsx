@@ -12,12 +12,14 @@ import { getStudentDetailsSuccess } from "./../../redux/actions/students.actions
 const Home = () => {
   const [studentName, setStudentName] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useDebounce(() => handleGetStudent(), 1000, [studentName]);
 
   const handleGetStudent = async () => {
+    setLoading(true);
     try {
       const response = await getSingleStudent(studentName);
       const mappedData = response.map((item) => ({
@@ -30,6 +32,7 @@ const Home = () => {
     } catch (error) {
       console.log("error", error);
       setError(true);
+      setLoading(false);
     }
   };
 
@@ -48,6 +51,7 @@ const Home = () => {
     } catch (error) {
       console.log("error", error);
       setError(true);
+      setLoading(false);
     }
   };
 
@@ -58,12 +62,21 @@ const Home = () => {
   return (
     <div className={styles.Home__container}>
       <h1>Student Search</h1>
-      <input
-        type="text"
-        onChange={handleStudentNameChange}
-        placeholder="Enter a student name"
-      />
-      {error && <div className={styles.Home__error}>No student found</div>}
+      {!loading ? (
+        <>
+          <input
+            type="text"
+            onChange={handleStudentNameChange}
+            placeholder="Enter a student name"
+            value={studentName}
+          />
+          <br />
+          <button onClick={handleGetStudent}>Search</button>
+          {error && <div className={styles.Home__error}>No student found</div>}
+        </>
+      ) : (
+        <h3>Loading...</h3>
+      )}
     </div>
   );
 };

@@ -19,7 +19,6 @@ const Student = () => {
   };
 
   useEffect(() => {
-    // getClasses();
     if (classes) {
       const filterFormulaString = classes
         .map((singleClass) => `FIND('${singleClass.fields?.Name}',{Classes})`)
