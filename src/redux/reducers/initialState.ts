@@ -8,6 +8,7 @@ const initialState: initialStateT = {
   students: {
     students: [],
     singleStudent: null,
+    studentName: "",
   },
   loading: {
     isLoading: false,

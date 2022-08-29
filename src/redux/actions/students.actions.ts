@@ -8,3 +8,7 @@ export function getStudentDetailsSuccess(student: studentT) {
 export function getAllStudentsSuccess(students: Array<studentT>) {
   return { type: types.GET_STUDENTS, students };
 }
+
+export function saveStudentName(name: string) {
+  return { type: types.SAVE_STUDENT, name };
+}

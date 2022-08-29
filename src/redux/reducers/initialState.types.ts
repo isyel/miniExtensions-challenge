@@ -17,6 +17,7 @@ export type classesT = {
 export type studentsT = {
   students: Array<studentT>;
   singleStudent: null;
+  studentName: string;
 };
 
 export type classT = {

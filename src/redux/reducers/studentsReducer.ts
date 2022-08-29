@@ -6,6 +6,7 @@ type actionT = {
   type: string;
   students: Array<studentT>;
   student: studentT;
+  name: string;
 };
 
 function studentReducer(state = initialState.students, action: actionT) {
@@ -16,6 +17,11 @@ function studentReducer(state = initialState.students, action: actionT) {
       return {
         ...state,
         singleStudent: action.student,
+      };
+    case types.SAVE_STUDENT:
+      return {
+        ...state,
+        studentName: action.name,
       };
     default:
       return state;

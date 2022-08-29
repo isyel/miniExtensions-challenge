@@ -14,7 +14,7 @@ function loadingReducer(state = initialState.loading, action: actionT) {
     case types.END_API_CALL:
       return { ...state, isLoading: false };
     case types.API_CALL_ERROR:
-      return { ...state, loadingError: true };
+      return { ...state, isLoading: false, loadingError: true };
     default:
       return state;
   }

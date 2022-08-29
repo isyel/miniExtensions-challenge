@@ -5,3 +5,4 @@ export const END_API_CALL = "END_API_CALL";
 export const API_CALL_ERROR = "API_CALL_ERROR";
 export const GET_STUDENTS = "GET_STUDENTS";
 export const GET_SINGLE_STUDENT = "GET_SINGLE_STUDENT";
+export const SAVE_STUDENT = "SAVE_STUDENT";

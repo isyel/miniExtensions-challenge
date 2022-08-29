@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllClassesSuccess } from "../../redux/actions/classes.actions";
 import { getClassesByIds } from "./../../api/classesApi";
 import { useNavigate } from "react-router-dom";
@@ -7,19 +6,29 @@ import useDebounce from "./../../hooks/useDebounce";
 
 import styles from "./Home.module.css";
 import { getSingleStudent } from "./../../api/studentsApi";
-import { getStudentDetailsSuccess } from "./../../redux/actions/students.actions";
+import {
+  getStudentDetailsSuccess,
+  saveStudentName,
+} from "./../../redux/actions/students.actions";
+import { initialStateT } from "@/redux/reducers/initialState.types";
+import {
+  apiCallError,
+  beginApiCall,
+  endApiCall,
+} from "./../../redux/actions/apiStatus.actions";
 
 const Home = () => {
-  const [studentName, setStudentName] = useState<string>("");
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const studentName = useSelector(
+    (state: initialStateT) => state.students.studentName
+  );
+  const loading = useSelector((state: initialStateT) => state.loading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useDebounce(() => handleGetStudent(), 1000, [studentName]);
 
   const handleGetStudent = async () => {
-    setLoading(true);
+    dispatch(beginApiCall());
     try {
       const response = await getSingleStudent(studentName);
       const mappedData = response.map((item) => ({
@@ -31,8 +40,9 @@ const Home = () => {
       handleGetClasses(mappedData[0].classes);
     } catch (error) {
       console.log("error", error);
-      setError(true);
-      setLoading(false);
+      dispatch(apiCallError());
+    } finally {
+      dispatch(endApiCall());
     }
   };
 
@@ -50,19 +60,20 @@ const Home = () => {
       navigate(`/student/${studentName}`);
     } catch (error) {
       console.log("error", error);
-      setError(true);
-      setLoading(false);
+      dispatch(apiCallError());
+    } finally {
+      dispatch(endApiCall());
     }
   };
 
   const handleStudentNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStudentName(e.target.value);
+    dispatch(saveStudentName(e.target.value));
   };
 
   return (
     <div className={styles.Home__container}>
       <h1>Student Search</h1>
-      {!loading ? (
+      {!loading.isLoading ? (
         <>
           <input
             type="text"
@@ -72,7 +83,9 @@ const Home = () => {
           />
           <br />
           <button onClick={handleGetStudent}>Search</button>
-          {error && <div className={styles.Home__error}>No student found</div>}
+          {loading.loadingError && (
+            <div className={styles.Home__error}>No student found</div>
+          )}
         </>
       ) : (
         <h3>Loading...</h3>
